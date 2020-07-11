@@ -4,22 +4,25 @@ require 'json'
 
 WEIGHT_API_URL = 'https://script.google.com/macros/s/AKfycbxC3kYvrHHcAHY3UJkzgsza3vMlML7BPh8AqU4fNYy6mqjF0HXV/exec'
 
-def fetchWeight(uri_str)
+def fetch_weight(uri_str, limit = 6)
   uri = URI.parse(uri_str)
-  request = Net::HTTP::Get.new(uri)
-  req_options = { use_ssl: uri.scheme == 'https' }
-  response = Net::HTTP.start(uri.hostname, uri.port, req_options) do |http|
-    http.request(request)
+  response = Net::HTTP.get_response(uri)
+
+  case response.code.to_i
+  when 200
+    response.body
+  when 301, 302
+    unless limit.zero?
+      fetch_weight(response['location'], limit.pred)
+    else
+      puts 'API request limit reached'
+    end
+  else
+    puts 'API request returned an unintended response'
   end
-  if response.code.start_with?('3')
-    response = fetchWeight(response.header['location'])
-  end
-  response
 end
 
-response = fetchWeight(WEIGHT_API_URL)
-
-data_list = JSON.parse(response.body)['data']
+data_list = JSON.parse(fetch_weight(WEIGHT_API_URL))['data']
 
 monthly_data_list = data_list.group_by { |data| Date.parse(data['date']).strftime('%Y/%m') }
 
