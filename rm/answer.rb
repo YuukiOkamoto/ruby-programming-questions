@@ -2,7 +2,7 @@ require 'bigdecimal'
 require 'bigdecimal/util'
 
 def calc_max_weight(weight, count)
-  (weight * (1 + (count.to_d / 40.0))).round(1)
+  (weight * (1 + (count.to_d / 40))).round(1)
 end
 
 def print_num_x_unit(num, unit)
