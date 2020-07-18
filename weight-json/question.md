@@ -1,9 +1,13 @@
 ## jsonファイルからデータを読み込んで月ごとの平均体重を算出する
 
 とある人物の2019年7月~2020年6月の日々の体重を記録したjsonファイルがあります。  
-[weight-json/data.json](data.json)
+rubyファイルと同じ作業ディレクトリで以下のコマンドを実行しjsonファイルをダウンロードしてください。
 
-このファイルを読み込み、  
+```shell
+wget https://script.google.com/macros/s/AKfycbwLfKjBlb6-CrVNMIsryb1O02VZPfWb2SqU1sqU6A6h8qjhX-A/exec -O data.json
+```
+
+このファイルをrubyで読み込み、  
 月ごとの平均体重を算出し以下の形式で出力してください。  
 また、小数第二位を四捨五入してください。
 

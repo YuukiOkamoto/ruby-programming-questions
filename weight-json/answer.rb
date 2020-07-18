@@ -1,7 +1,7 @@
 require 'json'
 require 'date'
 
-data_list = File.open('weight-json/data.json') { |file| JSON.load(file)['data'] }
+data_list = File.open('data.json') { |file| JSON.load(file)['data'] }
 
 monthly_data_list = data_list.group_by { |data| Date.parse(data['date']).strftime('%Y/%m') }
 
