@@ -20,5 +20,3 @@ print("\n")
   2.upto(12) { |count| print_num_x_unit(calc_max_weight(weight, count).to_f, 'kg') }
   print("\n")
 end
-
-
