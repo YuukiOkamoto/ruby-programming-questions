@@ -32,6 +32,7 @@ class Triangle
   end
 
   def row(chr_count, repeat_count)
-    (CHR * chr_count).ljust(@rows_count) * repeat_count
+    str = CHR * chr_count
+    (str.ljust(@rows_count) * repeat_count).strip
   end
 end
