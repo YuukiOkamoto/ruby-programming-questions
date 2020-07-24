@@ -1,7 +1,7 @@
 desc 'Puts triangle'
 task :puts_triangle, [:rows_count, :volume] do |_task, args|
-  trianble = Triangle.new(args.rows_count, args.volume)
-  puts trianble
+  triangle = Triangle.new(args.rows_count, args.volume)
+  puts triangle
 end
 
 class Triangle
