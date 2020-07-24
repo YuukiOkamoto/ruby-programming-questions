@@ -1,0 +1,39 @@
+class Triangle
+  CHR = '*'
+
+  def initialize(rows_count, volume)
+    @rows_count = rows_count.to_i
+    @volume = volume.to_i
+    set_body
+  end
+
+  def to_s
+    @body
+  end
+
+  def set_body
+    @body = ''
+    @volume.times do |i|
+      @body << rows(i + 1)
+      @body << "\n"
+    end
+  end
+
+  def rows(repeat_count)
+    @rows_count.times.map do |i|
+      row(i + 1, repeat_count)
+    end.join("\n")
+  end
+
+  def row(chr_count, repeat_count)
+    (CHR * chr_count).ljust(@rows_count) * repeat_count
+  end
+end
+
+
+
+desc 'Puts trianble'
+task :puts_triangle, [:rows_count, :volume] do |_task, args|
+  trianble = Triangle.new(args.rows_count, args.volume)
+  puts trianble.to_s
+end
