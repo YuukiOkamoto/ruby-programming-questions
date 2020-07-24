@@ -1,3 +1,9 @@
+desc 'Puts trianble'
+task :puts_triangle, [:rows_count, :volume] do |_task, args|
+  trianble = Triangle.new(args.rows_count, args.volume)
+  puts trianble
+end
+
 class Triangle
   CHR = '*'
 
@@ -28,12 +34,4 @@ class Triangle
   def row(chr_count, repeat_count)
     (CHR * chr_count).ljust(@rows_count) * repeat_count
   end
-end
-
-
-
-desc 'Puts trianble'
-task :puts_triangle, [:rows_count, :volume] do |_task, args|
-  trianble = Triangle.new(args.rows_count, args.volume)
-  puts trianble
 end
